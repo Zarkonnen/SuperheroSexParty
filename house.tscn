@@ -1,0 +1,380 @@
+[gd_scene load_steps=27 format=3 uid="uid://b3t8x5t4k7qt0"]
+
+[ext_resource type="Texture2D" uid="uid://m5q0dc3gygk5" path="res://house.png" id="1_cekdo"]
+[ext_resource type="Texture2D" uid="uid://lmc3iul0ucyq" path="res://main.png" id="2_q2i5x"]
+[ext_resource type="Script" path="res://player.gd" id="3_3p0cv"]
+[ext_resource type="PackedScene" uid="uid://2jrokf05su8s" path="res://character.tscn" id="3_cl6pr"]
+[ext_resource type="Texture2D" uid="uid://d1mule1iash0y" path="res://england.png" id="3_oa10v"]
+[ext_resource type="Texture2D" uid="uid://nqpxavkcvyey" path="res://glamour.png" id="4_hi8wg"]
+[ext_resource type="Texture2D" uid="uid://cu1rfx31v1sra" path="res://groupie.png" id="5_34k3x"]
+[ext_resource type="Script" path="res://dialogsystem.gd" id="5_s3fno"]
+[ext_resource type="PackedScene" uid="uid://b670ioy4ktlnu" path="res://seat.tscn" id="6_3wj1l"]
+[ext_resource type="Texture2D" uid="uid://bx3uivgwi2ctc" path="res://leader.png" id="6_qmfwo"]
+[ext_resource type="Texture2D" uid="uid://dnwoweacu7tjg" path="res://ouro.png" id="7_antwx"]
+[ext_resource type="Script" path="res://world.gd" id="7_xavri"]
+[ext_resource type="Texture2D" uid="uid://fd8ykgapehdv" path="res://pyra.png" id="8_41rpa"]
+[ext_resource type="Texture2D" uid="uid://m8hivcokcg2v" path="res://telekinesis.png" id="9_vs4dq"]
+[ext_resource type="Texture2D" uid="uid://0uoms483pswo" path="res://speedo.png" id="10_b58q1"]
+[ext_resource type="Texture2D" uid="uid://4sliul8gefdo" path="res://squirrels.png" id="10_gkrup"]
+[ext_resource type="Script" path="res://achievements.gd" id="15_jlotu"]
+[ext_resource type="Texture2D" uid="uid://bbvi57hfswsgs" path="res://slut.png" id="16_5ofdu"]
+[ext_resource type="Texture2D" uid="uid://du55nv1q4gj5c" path="res://cigar.png" id="16_myct3"]
+[ext_resource type="Texture2D" uid="uid://bwidmtj5pprom" path="res://ring.png" id="17_711by"]
+[ext_resource type="Texture2D" uid="uid://daikfyucay6cu" path="res://camera.png" id="18_plic1"]
+[ext_resource type="Texture2D" uid="uid://oedx46qm3lt5" path="res://ball.png" id="19_1p7w0"]
+[ext_resource type="Script" path="res://clock.gd" id="21_tv53n"]
+[ext_resource type="AudioStream" uid="uid://cv0sn806cvt53" path="res://music.mp3" id="22_k0p0w"]
+[ext_resource type="Script" path="res://mute.gd" id="23_rs8f0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ydt7"]
+radius = 88.0
+height = 244.0
+
+[node name="Root" type="Node2D"]
+
+[node name="House" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(642.666, 360.5)
+scale = Vector2(0.57, 0.57)
+texture = ExtResource("1_cekdo")
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Gluon" parent="Characters" node_paths=PackedStringArray("enemy") instance=ExtResource("3_cl6pr")]
+position = Vector2(381, 613)
+horny = 40
+angry = 30
+fightAngry = -10
+partyTired = 10
+timeAngry = 0
+timeHorny = 1
+enemy = NodePath("../England")
+
+[node name="England" parent="Characters" node_paths=PackedStringArray("fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(693, 445)
+texture = ExtResource("3_oa10v")
+horny = 40
+angry = 30
+fucks = false
+fightTired = 0
+partyAngry = -5
+fuckTired = 20
+timeAngry = 1
+timeHorny = 0
+timeDrunk = 2
+fancies = NodePath("../Telekinesis")
+
+[node name="Glamour" parent="Characters" node_paths=PackedStringArray("fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(547, 420)
+texture = ExtResource("4_hi8wg")
+tired = 30
+partyAngry = 3
+fuckHorny = -5
+timeTired = -3
+timeHorny = 4
+fancies = NodePath("../Leader")
+
+[node name="Groupie" parent="Characters" node_paths=PackedStringArray("enemy") instance=ExtResource("3_cl6pr")]
+position = Vector2(570, 80)
+texture = ExtResource("5_34k3x")
+horny = 50
+angry = 0
+fightAngry = -10
+fuckHorny = -5
+timeAngry = 4
+enemy = NodePath("../Squirrels")
+
+[node name="Leader" parent="Characters" instance=ExtResource("3_cl6pr")]
+position = Vector2(730, 238)
+texture = ExtResource("6_qmfwo")
+tired = 0
+angry = 0
+fightAngry = -10
+fightTired = 20
+partyDrunk = 5
+partyHorny = 10
+partyTired = 0
+fuckHorny = 0
+fuckTired = 0
+talkTired = 0
+timeAngry = 3
+timeDrunk = 0
+
+[node name="Ourobouros" parent="Characters" node_paths=PackedStringArray("fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(817, 354)
+texture = ExtResource("7_antwx")
+horny = 60
+drunk = 60
+angry = 20
+partyDrunk = 0
+partyAngry = 5
+timeDrunk = -1
+fancies = NodePath("../Leader")
+
+[node name="Pyra" parent="Characters" node_paths=PackedStringArray("enemy", "fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(755, 570)
+texture = ExtResource("8_41rpa")
+angry = 30
+fightAngry = -20
+fightTired = 20
+partyHorny = 20
+partyTired = -5
+fuckTired = 20
+talkTired = -5
+timeAngry = 1
+timeDrunk = 3
+enemy = NodePath("../Telekinesis")
+fancies = NodePath("../Telekinesis")
+
+[node name="Telekinesis" parent="Characters" node_paths=PackedStringArray("fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(425, 211)
+texture = ExtResource("9_vs4dq")
+horny = 20
+drunk = 40
+tired = 0
+angry = 0
+partyHorny = 10
+timeAngry = 1
+timeDrunk = 0
+fancies = NodePath("../Ourobouros")
+
+[node name="Speedo" parent="Characters" node_paths=PackedStringArray("enemy", "fancies") instance=ExtResource("3_cl6pr")]
+position = Vector2(370, 369)
+texture = ExtResource("10_b58q1")
+horny = 20
+drunk = 10
+timeDrunk = 2
+enemy = NodePath("../Ourobouros")
+fancies = NodePath("../Telekinesis")
+
+[node name="Squirrels" parent="Characters" node_paths=PackedStringArray("enemy") instance=ExtResource("3_cl6pr")]
+position = Vector2(628, 127)
+texture = ExtResource("10_gkrup")
+horny = 50
+drunk = 0
+fucks = false
+partyDrunk = 0
+partyAngry = 10
+fuckHorny = 0
+fuckTired = 0
+timeAngry = 3
+timeDrunk = 0
+enemy = NodePath("../Leader")
+
+[node name="Player" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+y_sort_enabled = true
+position = Vector2(648, 651)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_q2i5x")
+script = ExtResource("3_3p0cv")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CapsuleShape2D_3ydt7")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="GUI"]
+unique_name_in_owner = true
+offset_left = -6.0
+offset_top = 470.0
+offset_right = 1293.0
+offset_bottom = 740.0
+
+[node name="Dialog" type="Label" parent="GUI/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -250.0
+offset_right = -35.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+script = ExtResource("5_s3fno")
+
+[node name="AchievementPanel" type="Panel" parent="GUI"]
+unique_name_in_owner = true
+visible = false
+offset_left = 815.0
+offset_top = 348.0
+offset_right = 1285.0
+offset_bottom = 463.0
+script = ExtResource("15_jlotu")
+
+[node name="Icon" type="Sprite2D" parent="GUI/AchievementPanel"]
+position = Vector2(58, 56)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_5ofdu")
+
+[node name="Label" type="Label" parent="GUI/AchievementPanel"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 3.0
+offset_right = 456.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 20
+text = "Super-slut: Sleep with everyone at the party!"
+autowrap_mode = 3
+
+[node name="Score" type="Label" parent="GUI"]
+unique_name_in_owner = true
+offset_left = 73.0
+offset_top = 8.0
+offset_right = 142.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 20
+text = "0/3"
+
+[node name="Seats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_xavri")
+
+[node name="Seat" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(659, 325)
+
+[node name="Seat2" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(618, 269)
+
+[node name="Seat3" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(817, 171)
+
+[node name="Seat4" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(702, 127)
+
+[node name="Seat5" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(761, 111)
+
+[node name="Seat6" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(403, 659)
+
+[node name="Seat7" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(411, 579)
+
+[node name="Seat8" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(483, 627)
+
+[node name="Seat9" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(80, 97)
+social = false
+sex = true
+
+[node name="Seat10" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(77, 626)
+social = false
+sex = true
+
+[node name="Home" parent="Seats" instance=ExtResource("6_3wj1l")]
+unique_name_in_owner = true
+position = Vector2(465, 378)
+social = false
+
+[node name="Seat11" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(592, 322)
+
+[node name="Seat12" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(377, 213)
+
+[node name="Seat13" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(373, 162)
+
+[node name="Seat14" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(426, 105)
+
+[node name="Seat15" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(479, 110)
+
+[node name="Seat16" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(750, 550)
+
+[node name="Seat17" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(749, 637)
+
+[node name="Seat18" parent="Seats" instance=ExtResource("6_3wj1l")]
+position = Vector2(803, 477)
+
+[node name="SexFallback" parent="Seats" instance=ExtResource("6_3wj1l")]
+unique_name_in_owner = true
+position = Vector2(235, 132)
+social = false
+
+[node name="Statue" parent="Seats" instance=ExtResource("6_3wj1l")]
+unique_name_in_owner = true
+position = Vector2(1067, 182)
+social = false
+
+[node name="Rocket" parent="Seats" instance=ExtResource("6_3wj1l")]
+unique_name_in_owner = true
+position = Vector2(1038, 637)
+social = false
+
+[node name="Garden" parent="Seats" instance=ExtResource("6_3wj1l")]
+unique_name_in_owner = true
+position = Vector2(960, 553)
+social = false
+
+[node name="Inventory" type="Node" parent="."]
+
+[node name="Cigar" type="Sprite2D" parent="Inventory"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(1245.75, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_myct3")
+
+[node name="Ring" type="Sprite2D" parent="Inventory"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(1189.75, 31)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_711by")
+
+[node name="Camera" type="Sprite2D" parent="Inventory"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(1134.75, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_plic1")
+
+[node name="Ball" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(437, 539)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_1p7w0")
+
+[node name="Clock" type="Node2D" parent="."]
+z_index = 10
+position = Vector2(30, 30)
+script = ExtResource("21_tv53n")
+timeout = 420
+
+[node name="TopLeft" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(349, 50)
+
+[node name="BottomRight" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(823, 679)
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(341, 367)
+stream = ExtResource("22_k0p0w")
+autoplay = true
+max_distance = 1500.0
+script = ExtResource("23_rs8f0")
+
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_entered"]
+[connection signal="area_exited" from="Player/Area2D" to="Player" method="_exited"]

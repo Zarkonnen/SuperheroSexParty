@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://x17m2n8s3mpj"]
+
+[ext_resource type="Script" path="res://restart.gd" id="1_ldun5"]
+
+[node name="defeat" type="Node2D"]
+script = ExtResource("1_ldun5")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 146.0
+offset_right = 1275.0
+offset_bottom = 501.0
+theme_override_font_sizes/font_size = 200
+text = "Defeat!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 444.0
+offset_right = 1282.0
+offset_bottom = 786.0
+theme_override_font_sizes/font_size = 50
+text = "Your plan was foiled.
+Hit space to restart."
+horizontal_alignment = 1
